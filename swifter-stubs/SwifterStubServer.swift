@@ -4,20 +4,18 @@
 import Foundation
 import Swifter
 import SwiftMocktail
+import SwifterStubServer
 
-public protocol HttpStubServer {
-    func enableStub(forFile path: String) throws
-    func disableStub(forFile path: String) throws
-    
-    func startStubServer(onPort port: in_port_t) throws
-    func stopStubServer()
-}
 
 enum HttpStubServerError: Error {
     case invalidStubFile
 }
 
 extension HttpServer: HttpStubServer {
+    
+    public static func createStubServer() -> HttpStubServer {
+        return HttpServer()
+    }
     
     public func startStubServer(onPort port: in_port_t) throws {
         try start(port, forceIPv4: false, priority: .default)

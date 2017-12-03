@@ -2,7 +2,7 @@
 
 
 import XCTest
-@testable import swifter_stubs
+@testable import SwifterStubs
 
 class swifter_stubsTests: XCTestCase {
     

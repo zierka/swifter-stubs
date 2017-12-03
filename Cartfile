@@ -1,2 +1,3 @@
 github "glock45/swifter" == 1.3.3
 github "nicholascross/SwiftMocktail"
+github "nicholascross/swifter-stub-server"

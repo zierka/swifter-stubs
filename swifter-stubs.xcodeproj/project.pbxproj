@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B82125D1FD39B7200E5B898 /* swifter_stubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8212531FD39B7200E5B898 /* swifter_stubs.framework */; };
+		8B5719EC1FD4041500B765DD /* SwifterStubServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */; };
+		8B82125D1FD39B7200E5B898 /* SwifterStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8212531FD39B7200E5B898 /* SwifterStubs.framework */; };
 		8B8212621FD39B7200E5B898 /* swifter_stubsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8212611FD39B7200E5B898 /* swifter_stubsTests.swift */; };
 		8B8212641FD39B7200E5B898 /* swifter_stubs.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B8212561FD39B7200E5B898 /* swifter_stubs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B8212701FD3A1B600E5B898 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126E1FD3A1B600E5B898 /* Swifter.framework */; };
@@ -26,7 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8B8212531FD39B7200E5B898 /* swifter_stubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = swifter_stubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B31DCFA1FD3FCCF0053FBAE /* swifter_stub_server.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = swifter_stub_server.framework; path = Carthage/Build/iOS/swifter_stub_server.framework; sourceTree = "<group>"; };
+		8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterStubServer.framework; path = Carthage/Build/iOS/SwifterStubServer.framework; sourceTree = "<group>"; };
+		8B8212531FD39B7200E5B898 /* SwifterStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwifterStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8212561FD39B7200E5B898 /* swifter_stubs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = swifter_stubs.h; sourceTree = "<group>"; };
 		8B8212571FD39B7200E5B898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B82125C1FD39B7200E5B898 /* swifter-stubsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swifter-stubsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5719EC1FD4041500B765DD /* SwifterStubServer.framework in Frameworks */,
 				8B8212701FD3A1B600E5B898 /* Swifter.framework in Frameworks */,
 				8B8212711FD3A1B600E5B898 /* SwiftMocktail.framework in Frameworks */,
 			);
@@ -51,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B82125D1FD39B7200E5B898 /* swifter_stubs.framework in Frameworks */,
+				8B82125D1FD39B7200E5B898 /* SwifterStubs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +75,7 @@
 		8B8212541FD39B7200E5B898 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B8212531FD39B7200E5B898 /* swifter_stubs.framework */,
+				8B8212531FD39B7200E5B898 /* SwifterStubs.framework */,
 				8B82125C1FD39B7200E5B898 /* swifter-stubsTests.xctest */,
 			);
 			name = Products;
@@ -99,6 +103,8 @@
 		8B82126D1FD3A1B600E5B898 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */,
+				8B31DCFA1FD3FCCF0053FBAE /* swifter_stub_server.framework */,
 				8B82126E1FD3A1B600E5B898 /* Swifter.framework */,
 				8B82126F1FD3A1B600E5B898 /* SwiftMocktail.framework */,
 			);
@@ -119,9 +125,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8B8212521FD39B7200E5B898 /* swifter-stubs */ = {
+		8B8212521FD39B7200E5B898 /* SwifterStubs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B8212671FD39B7200E5B898 /* Build configuration list for PBXNativeTarget "swifter-stubs" */;
+			buildConfigurationList = 8B8212671FD39B7200E5B898 /* Build configuration list for PBXNativeTarget "SwifterStubs" */;
 			buildPhases = (
 				8B82124E1FD39B7200E5B898 /* Sources */,
 				8B82124F1FD39B7200E5B898 /* Frameworks */,
@@ -132,9 +138,9 @@
 			);
 			dependencies = (
 			);
-			name = "swifter-stubs";
+			name = SwifterStubs;
 			productName = "swifter-stubs";
-			productReference = 8B8212531FD39B7200E5B898 /* swifter_stubs.framework */;
+			productReference = 8B8212531FD39B7200E5B898 /* SwifterStubs.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8B82125B1FD39B7200E5B898 /* swifter-stubsTests */ = {
@@ -188,7 +194,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8B8212521FD39B7200E5B898 /* swifter-stubs */,
+				8B8212521FD39B7200E5B898 /* SwifterStubs */,
 				8B82125B1FD39B7200E5B898 /* swifter-stubsTests */,
 			);
 		};
@@ -233,7 +239,7 @@
 /* Begin PBXTargetDependency section */
 		8B82125F1FD39B7200E5B898 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8B8212521FD39B7200E5B898 /* swifter-stubs */;
+			target = 8B8212521FD39B7200E5B898 /* SwifterStubs */;
 			targetProxy = 8B82125E1FD39B7200E5B898 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -443,7 +449,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B8212671FD39B7200E5B898 /* Build configuration list for PBXNativeTarget "swifter-stubs" */ = {
+		8B8212671FD39B7200E5B898 /* Build configuration list for PBXNativeTarget "SwifterStubs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B8212681FD39B7200E5B898 /* Debug */,
