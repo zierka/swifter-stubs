@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B2F8BFB1FE605CF00DFFB62 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126E1FD3A1B600E5B898 /* Swifter.framework */; };
 		8B5719EC1FD4041500B765DD /* SwifterStubServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */; };
+		8B61B1ED1FE6066900A9AACF /* SwiftMocktail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126F1FD3A1B600E5B898 /* SwiftMocktail.framework */; };
+		8B61B1EE1FE6073C00A9AACF /* SwifterStubServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */; };
+		8B61B1F41FE6268800A9AACF /* NetUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B61B1F31FE6268800A9AACF /* NetUtils.framework */; };
 		8B82125D1FD39B7200E5B898 /* SwifterStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8212531FD39B7200E5B898 /* SwifterStubs.framework */; };
 		8B8212621FD39B7200E5B898 /* swifter_stubsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8212611FD39B7200E5B898 /* swifter_stubsTests.swift */; };
 		8B8212641FD39B7200E5B898 /* swifter_stubs.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B8212561FD39B7200E5B898 /* swifter_stubs.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +33,7 @@
 /* Begin PBXFileReference section */
 		8B31DCFA1FD3FCCF0053FBAE /* swifter_stub_server.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = swifter_stub_server.framework; path = Carthage/Build/iOS/swifter_stub_server.framework; sourceTree = "<group>"; };
 		8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterStubServer.framework; path = Carthage/Build/iOS/SwifterStubServer.framework; sourceTree = "<group>"; };
+		8B61B1F31FE6268800A9AACF /* NetUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetUtils.framework; path = Carthage/Build/iOS/NetUtils.framework; sourceTree = "<group>"; };
 		8B8212531FD39B7200E5B898 /* SwifterStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwifterStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8212561FD39B7200E5B898 /* swifter_stubs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = swifter_stubs.h; sourceTree = "<group>"; };
 		8B8212571FD39B7200E5B898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B61B1F41FE6268800A9AACF /* NetUtils.framework in Frameworks */,
 				8B5719EC1FD4041500B765DD /* SwifterStubServer.framework in Frameworks */,
 				8B8212701FD3A1B600E5B898 /* Swifter.framework in Frameworks */,
 				8B8212711FD3A1B600E5B898 /* SwiftMocktail.framework in Frameworks */,
@@ -56,6 +62,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B82125D1FD39B7200E5B898 /* SwifterStubs.framework in Frameworks */,
+				8B61B1EE1FE6073C00A9AACF /* SwifterStubServer.framework in Frameworks */,
+				8B61B1ED1FE6066900A9AACF /* SwiftMocktail.framework in Frameworks */,
+				8B2F8BFB1FE605CF00DFFB62 /* Swifter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +112,7 @@
 		8B82126D1FD3A1B600E5B898 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B61B1F31FE6268800A9AACF /* NetUtils.framework */,
 				8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */,
 				8B31DCFA1FD3FCCF0053FBAE /* swifter_stub_server.framework */,
 				8B82126E1FD3A1B600E5B898 /* Swifter.framework */,
@@ -414,8 +424,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "swifter-stubsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(SRCROOT)/Carthage/Build/iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nacross.swifter-stubsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -428,8 +442,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "swifter-stubsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(SRCROOT)/Carthage/Build/iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nacross.swifter-stubsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
