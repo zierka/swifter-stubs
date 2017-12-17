@@ -53,7 +53,7 @@ class SwifterStubServerTests: XCTestCase {
         let request = HttpRequest()
         request.method = "get"
         request.path = "test/path/expres"
-        request.params = ["asdf":"asdf"]
+        request.params = ["asdf":"asdf", "something":"wedontcareabout"]
         let response = stubRegister.requestHandler(request: request)
         
         XCTAssertEqual(response.statusCode(), 200)

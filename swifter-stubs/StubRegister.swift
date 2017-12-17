@@ -27,8 +27,16 @@ fileprivate extension Mocktail {
         guard let expression = try? NSRegularExpression(pattern:"^\(partialPath)$", options: .caseInsensitive) else {
             fatalError("Failed to create regular expression from partial path: \(partialPath)")
         }
+
+        guard expression.firstMatch(in: request.path, options: [], range: NSMakeRange(0,request.path.count)) != nil else {
+            return false
+        }
+
+        for case let param in params.keys where request.params[param] != params[param] {
+            return false
+        }
         
-        return expression.firstMatch(in: request.path, options: [], range: NSMakeRange(0,request.path.count)) != nil && params == request.params
+        return true
     }
     
     fileprivate func response() -> HttpResponse {
