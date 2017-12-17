@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B2F8BFA1FE5FBF300DFFB62 /* StubRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */; };
 		8B2F8BFB1FE605CF00DFFB62 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126E1FD3A1B600E5B898 /* Swifter.framework */; };
 		8B5719EC1FD4041500B765DD /* SwifterStubServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */; };
 		8B61B1ED1FE6066900A9AACF /* SwiftMocktail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126F1FD3A1B600E5B898 /* SwiftMocktail.framework */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRegister.swift; sourceTree = "<group>"; };
 		8B31DCFA1FD3FCCF0053FBAE /* swifter_stub_server.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = swifter_stub_server.framework; path = Carthage/Build/iOS/swifter_stub_server.framework; sourceTree = "<group>"; };
 		8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterStubServer.framework; path = Carthage/Build/iOS/SwifterStubServer.framework; sourceTree = "<group>"; };
 		8B61B1F31FE6268800A9AACF /* NetUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetUtils.framework; path = Carthage/Build/iOS/NetUtils.framework; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				8B8212561FD39B7200E5B898 /* swifter_stubs.h */,
 				8B8212571FD39B7200E5B898 /* Info.plist */,
 				8B8212721FD3A20900E5B898 /* SwifterStubServer.swift */,
+				8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */,
 			);
 			path = "swifter-stubs";
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B2F8BFA1FE5FBF300DFFB62 /* StubRegister.swift in Sources */,
 				8B8212731FD3A20900E5B898 /* SwifterStubServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

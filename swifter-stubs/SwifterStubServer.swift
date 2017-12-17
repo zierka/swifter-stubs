@@ -5,6 +5,7 @@ import Foundation
 import Swifter
 import SwiftMocktail
 import SwifterStubServer
+import NetUtils
 
 
 enum HttpStubServerError: Error {
@@ -17,22 +18,51 @@ extension HttpServer: HttpStubServer {
         return HttpServer()
     }
     
-    public func startStubServer(onPort port: in_port_t) throws {
-        try start(port, forceIPv4: false, priority: .default)
+    public static func availableInterfaces() -> [(name: String, address: IPAddress)] {
+        return Interface.allInterfaces().flatMap { interface in
+            if let address = interface.address, interface.family == .ipv4 {
+                return (name: interface.name, address: IPAddress.v4(address))
+            }
+            else if let address = interface.address, interface.family == .ipv6 {
+                return (name: interface.name, address: IPAddress.v6(address)) 
+            }
+            else {
+                return nil
+            }
+        }
+    }
+    
+    public func startStubServer(onPort port: in_port_t, boundTo ipAddress: IPAddress) throws {
+        var forceIPv4 = false
+        
+        if case .v4(let ipv4Address) = ipAddress {
+            listenAddressIPv4 = ipv4Address
+            forceIPv4 = true
+        }
+        else if case .v6(let ipv6Address) = ipAddress {
+            listenAddressIPv6 = ipv6Address
+        }
+        
+        try start(port, forceIPv4: forceIPv4, priority: .default)
     }
     
     public func stopStubServer() {
         stop()
     }
     
+    public var ipAddress: String? {
+        return listenAddressIPv4 ?? listenAddressIPv6
+    }
+    
     public func enableStub(forFile path: String) throws {
         let stubDefinition: Mocktail = try loadStub(fromFile: path)
-        self[stubDefinition.path] = stubRegister.requestHandler
+        StubRegister.sharedRegister.register(stub: stubDefinition)
+        self[stubDefinition.path] = StubRegister.sharedRegister.requestHandler
     }
     
     public func disableStub(forFile path: String) throws {
         let stubDefinition: Mocktail = try loadStub(fromFile: path)
-        self[stubDefinition.path] = nil
+        StubRegister.sharedRegister.remove(stub: stubDefinition)
     }
 
     // MARK: - Private
@@ -48,59 +78,3 @@ extension HttpServer: HttpStubServer {
     
 }
 
-private let stubRegister = StubRegister()
-
-fileprivate extension HttpRequest {
-    
-    fileprivate var mocktailMethod: SwiftMocktail.Method {
-        guard let httpMethod = SwiftMocktail.HttpMethod(rawValue: method) else {
-            return .other(method)
-        }
-        
-        return .httpMethod(httpMethod)
-    }
-    
-}
-
-fileprivate extension Mocktail {
-    
-    fileprivate var data: Data? {
-        return responseBody.data(using: .utf8)
-    }
-    
-    fileprivate func response() -> HttpResponse {
-        return HttpResponse.raw(responseStatusCode, "Stubbed response", responseHeaders) { responseBodyWriter in
-            guard let data = self.data else { return }
-            try responseBodyWriter.write(data)
-        }
-    }
-    
-}
-
-fileprivate struct StubRequest: Hashable, Equatable {
-    let method: SwiftMocktail.Method
-    let path: String
-    let params: [String:String]
-    
-    var hashValue: Int {
-         return params.keys.reduce(path.hashValue, { return $0 + $1.hashValue } )
-    }
-    
-    static func ==(lhs: StubRequest, rhs: StubRequest) -> Bool {
-        return lhs.path == rhs.path && lhs.params == rhs.params
-    }
-}
-
-fileprivate class StubRegister {
-    fileprivate let stubs: [StubRequest: Mocktail] = [:]
-    
-    fileprivate let requestHandler: ((HttpRequest) -> HttpResponse) = { request in
-        let stubRequest = StubRequest(method:request.mocktailMethod, path: request.path, params: request.params)
-        
-        guard let mocktail = stubRegister.stubs[stubRequest] else {
-            return .raw(501, "Not implemented", nil, nil)
-        }
-        
-        return mocktail.response()
-    }
-}
