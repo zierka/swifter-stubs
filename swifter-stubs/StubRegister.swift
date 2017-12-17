@@ -61,6 +61,8 @@ fileprivate extension Mocktail {
     }
     
     private var partialPath: String {
+        //raw expression (((?!\\\?).)+)\\\?.*
+        //the first group of a match will be the string prior to the escaped question mark
         guard let expression = try? NSRegularExpression(pattern: "(((?!\\\\\\?).)+)\\\\\\?.*", options: .caseInsensitive) else {
             fatalError("The expression is invalid")
         }
