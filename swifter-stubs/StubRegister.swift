@@ -24,9 +24,30 @@ fileprivate extension Mocktail {
         return responseBody.data(using: .utf8)
     }
     
+    private var params: [String: String] {
+        guard let queryItems = NSURLComponents(string: path)?.queryItems else {
+            return [:]
+        }
+        
+        var queryParams: [String:String] = [:]
+        
+        for item in queryItems {
+            queryParams[item.name] = item.value
+        }
+        
+        return queryParams
+    }
+    
+    private var partialPath: String {
+        guard let path = NSURLComponents(string: path)?.path else {
+            fatalError("Invalid path: \(self.path)")
+        }
+        
+        return path
+    }
+    
     fileprivate func request() -> StubRequest {
-        //todo: params should extracted from query string..??
-        return StubRequest(method: method, path: path, params: [:])
+        return StubRequest(method: method, path: partialPath, params: params)
     }
     
     fileprivate func response() -> HttpResponse {

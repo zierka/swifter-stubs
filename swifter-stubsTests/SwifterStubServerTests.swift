@@ -45,6 +45,24 @@ class SwifterStubServerTests: XCTestCase {
         try! response.content().write!(writer)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
+
+    func testEnableStubQueryString() {
+        let path = Bundle(for: SwifterStubServerTests.self).path(forResource: "query_test", ofType: "tail")
+        try! stubServer.enableStub(forFile: path!)
+        
+        let request = HttpRequest()
+        request.method = "get"
+        request.path = "test/path/expres"
+        request.params = ["asdf":"asdf"]
+        let response = stubRegister.requestHandler(request: request)
+        
+        XCTAssertEqual(response.statusCode(), 200)
+        XCTAssertEqual(response.headers()["Content-Type"], "application/json")
+        
+        let writer = BodyWriter()
+        try! response.content().write!(writer)
+        XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
+    }
     
     func testEnableStubPOST() {
         let path = Bundle(for: SwifterStubServerTests.self).path(forResource: "post_test", ofType: "tail")
