@@ -11,6 +11,8 @@
 		8B2F8BFA1FE5FBF300DFFB62 /* StubRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */; };
 		8B2F8BFB1FE605CF00DFFB62 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126E1FD3A1B600E5B898 /* Swifter.framework */; };
 		8B3FDF521FE63BEA00C433EA /* query_test.tail in Resources */ = {isa = PBXBuildFile; fileRef = 8B3FDF511FE63BEA00C433EA /* query_test.tail */; };
+		8B3FDF541FE64D3F00C433EA /* regex_test.tail in Resources */ = {isa = PBXBuildFile; fileRef = 8B3FDF531FE64D3F00C433EA /* regex_test.tail */; };
+		8B3FDF561FE64DF800C433EA /* query_regex_test.tail in Resources */ = {isa = PBXBuildFile; fileRef = 8B3FDF551FE64DF800C433EA /* query_regex_test.tail */; };
 		8B5719EC1FD4041500B765DD /* SwifterStubServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */; };
 		8B61B1ED1FE6066900A9AACF /* SwiftMocktail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126F1FD3A1B600E5B898 /* SwiftMocktail.framework */; };
 		8B61B1EE1FE6073C00A9AACF /* SwifterStubServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */; };
@@ -39,6 +41,8 @@
 		8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRegister.swift; sourceTree = "<group>"; };
 		8B31DCFA1FD3FCCF0053FBAE /* swifter_stub_server.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = swifter_stub_server.framework; path = Carthage/Build/iOS/swifter_stub_server.framework; sourceTree = "<group>"; };
 		8B3FDF511FE63BEA00C433EA /* query_test.tail */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = query_test.tail; sourceTree = "<group>"; };
+		8B3FDF531FE64D3F00C433EA /* regex_test.tail */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = regex_test.tail; sourceTree = "<group>"; };
+		8B3FDF551FE64DF800C433EA /* query_regex_test.tail */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = query_regex_test.tail; sourceTree = "<group>"; };
 		8B5719EB1FD4041500B765DD /* SwifterStubServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterStubServer.framework; path = Carthage/Build/iOS/SwifterStubServer.framework; sourceTree = "<group>"; };
 		8B61B1EF1FE608FA00A9AACF /* test.tail */ = {isa = PBXFileReference; lastKnownFileType = text; path = test.tail; sourceTree = "<group>"; };
 		8B61B1F11FE61AFD00A9AACF /* post_test.tail */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = post_test.tail; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 		8B8212601FD39B7200E5B898 /* swifter-stubsTests */ = {
 			isa = PBXGroup;
 			children = (
+				8B3FDF551FE64DF800C433EA /* query_regex_test.tail */,
+				8B3FDF531FE64D3F00C433EA /* regex_test.tail */,
 				8B3FDF511FE63BEA00C433EA /* query_test.tail */,
 				8B8212631FD39B7200E5B898 /* Info.plist */,
 				8B2F8BF61FE5F94000DFFB62 /* SwifterStubServerTests.swift */,
@@ -234,7 +240,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B3FDF561FE64DF800C433EA /* query_regex_test.tail in Resources */,
 				8B3FDF521FE63BEA00C433EA /* query_test.tail in Resources */,
+				8B3FDF541FE64D3F00C433EA /* regex_test.tail in Resources */,
 				8B61B1F01FE608FA00A9AACF /* test.tail in Resources */,
 				8B61B1F21FE61AFD00A9AACF /* post_test.tail in Resources */,
 			);

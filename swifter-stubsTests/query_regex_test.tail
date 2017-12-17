@@ -1,5 +1,5 @@
 GET
-test/path/expres\?asdf=asdf
+test/adf?/expres\?asdf=asdf
 200
 application/json
 
