@@ -42,7 +42,7 @@ class SwifterStubServerTests: XCTestCase {
         XCTAssertEqual(response.headers()["Content-Type"], "application/json")
         
         let writer = BodyWriter()
-        try! response.content().write!(writer)
+        try! response.content().write?(writer)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
 
@@ -60,7 +60,7 @@ class SwifterStubServerTests: XCTestCase {
         XCTAssertEqual(response.headers()["Content-Type"], "application/json")
         
         let writer = BodyWriter()
-        try! response.content().write!(writer)
+        try! response.content().write?(writer)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
 
@@ -77,7 +77,7 @@ class SwifterStubServerTests: XCTestCase {
         XCTAssertEqual(response.headers()["Content-Type"], "application/json")
         
         let writer = BodyWriter()
-        try! response.content().write!(writer)
+        try! response.content().write?(writer)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
 
@@ -95,7 +95,7 @@ class SwifterStubServerTests: XCTestCase {
         XCTAssertEqual(response.headers()["Content-Type"], "application/json")
         
         let writer = BodyWriter()
-        try! response.content().write!(writer)
+        try! response.content().write?(writer)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
     
@@ -112,7 +112,7 @@ class SwifterStubServerTests: XCTestCase {
         XCTAssertEqual(response.headers()["Content-Type"], "application/json")
         
         let writer = BodyWriter()
-        try! response.content().write!(writer)
+        try! response.content().write?(writer)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
     
