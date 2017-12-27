@@ -25,6 +25,7 @@
 		8B8212711FD3A1B600E5B898 /* SwiftMocktail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126F1FD3A1B600E5B898 /* SwiftMocktail.framework */; };
 		8B8212731FD3A20900E5B898 /* SwifterStubServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8212721FD3A20900E5B898 /* SwifterStubServer.swift */; };
 		8BA7BAF91FF39F1E00FCD71D /* stubs_headers_test.tail in Resources */ = {isa = PBXBuildFile; fileRef = 8BA7BAF81FF39F1D00FCD71D /* stubs_headers_test.tail */; };
+		8BA7BAFB1FF3B5A100FCD71D /* stubs_set_headers_test.tail in Resources */ = {isa = PBXBuildFile; fileRef = 8BA7BAFA1FF3B5A000FCD71D /* stubs_set_headers_test.tail */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		8B82126F1FD3A1B600E5B898 /* SwiftMocktail.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMocktail.framework; path = Carthage/Build/iOS/SwiftMocktail.framework; sourceTree = "<group>"; };
 		8B8212721FD3A20900E5B898 /* SwifterStubServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwifterStubServer.swift; sourceTree = "<group>"; };
 		8BA7BAF81FF39F1D00FCD71D /* stubs_headers_test.tail */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stubs_headers_test.tail; sourceTree = "<group>"; };
+		8BA7BAFA1FF3B5A000FCD71D /* stubs_set_headers_test.tail */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stubs_set_headers_test.tail; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		8B8212601FD39B7200E5B898 /* swifter-stubsTests */ = {
 			isa = PBXGroup;
 			children = (
+				8BA7BAFA1FF3B5A000FCD71D /* stubs_set_headers_test.tail */,
 				8BA7BAF81FF39F1D00FCD71D /* stubs_headers_test.tail */,
 				8B3FDF551FE64DF800C433EA /* query_regex_test.tail */,
 				8B3FDF531FE64D3F00C433EA /* regex_test.tail */,
@@ -245,6 +248,7 @@
 			files = (
 				8B3FDF561FE64DF800C433EA /* query_regex_test.tail in Resources */,
 				8B3FDF521FE63BEA00C433EA /* query_test.tail in Resources */,
+				8BA7BAFB1FF3B5A100FCD71D /* stubs_set_headers_test.tail in Resources */,
 				8BA7BAF91FF39F1E00FCD71D /* stubs_headers_test.tail in Resources */,
 				8B3FDF541FE64D3F00C433EA /* regex_test.tail in Resources */,
 				8B61B1F01FE608FA00A9AACF /* test.tail in Resources */,

@@ -141,9 +141,45 @@ class SwifterStubServerTests: XCTestCase {
         XCTAssertEqual(response.statusCode(), 201)
     }
     
-    func testEnableStubGETStrippingStubHeaders() {
+    func testEnableStubGETWithStubHeaders() {
+        let setPath = Bundle(for: SwifterStubServerTests.self).path(forResource: "stubs_set_headers_test", ofType: "tail")
+        try! stubServer.enableStub(forFile: setPath!)
+
         let path = Bundle(for: SwifterStubServerTests.self).path(forResource: "stubs_headers_test", ofType: "tail")
         try! stubServer.enableStub(forFile: path!)
+
+        let request = HttpRequest()
+        request.method = "get"
+        request.path = "test/path/expres"
+        let response = stubRegister.requestHandler(request: request)
+        
+        XCTAssertEqual(response.statusCode(), 501)
+
+        let setRequest = HttpRequest()
+        setRequest.method = "get"
+        setRequest.path = "test/path/expres1"
+        let setResponse = stubRegister.requestHandler(request: setRequest)
+        XCTAssertEqual(setResponse.statusCode(), 200)
+        
+        let retryRequest = HttpRequest()
+        retryRequest.method = "get"
+        retryRequest.path = "test/path/expres"
+        let retryResponse = stubRegister.requestHandler(request: retryRequest)
+
+        XCTAssertEqual(retryResponse.statusCode(), 200)
+    }
+
+    func testEnableStubGETStrippingStubHeaders() {
+        let setPath = Bundle(for: SwifterStubServerTests.self).path(forResource: "stubs_set_headers_test", ofType: "tail")
+        try! stubServer.enableStub(forFile: setPath!)
+        
+        let path = Bundle(for: SwifterStubServerTests.self).path(forResource: "stubs_headers_test", ofType: "tail")
+        try! stubServer.enableStub(forFile: path!)
+        
+        let setRequest = HttpRequest()
+        setRequest.method = "get"
+        setRequest.path = "test/path/expres1"
+        let setResponse = stubRegister.requestHandler(request: setRequest)
         
         let request = HttpRequest()
         request.method = "get"

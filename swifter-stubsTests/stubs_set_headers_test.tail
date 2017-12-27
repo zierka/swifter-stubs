@@ -1,0 +1,9 @@
+GET
+test/path/expres1
+200
+application/json
+stub-set : variable1=value1,variable3=value3
+
+{
+"asdf" : "adsfasd"
+}

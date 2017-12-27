@@ -2,8 +2,9 @@ GET
 test/path/expres
 200
 application/json
-stub-only-if: variable1=value1
-stub-set : variable2=value2
+stub-only-if: variable1=value1,variable3=value3
+stub-set : variable2=value2,variable4=value4
+stub-delay: 0.7
 
 {
 "asdf" : "adsfasd"

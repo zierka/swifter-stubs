@@ -61,12 +61,57 @@ fileprivate extension Mocktail {
         return HttpResponse.raw(responseStatusCode, "Stubbed response", headers) { responseBodyWriter in
             guard let data = self.data else { return }
             let delay: Double = self.delay ?? 0.5
+            
             DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + delay) {
                 try? responseBodyWriter.write(data)
             }
         }
     }
     
+    fileprivate var variables: [String: String] {
+        guard let setHeader = responseHeaders[StubHeaders.set.header] else {
+            return [:]
+        }
+        
+        let variables: [(String, String)] = setHeader.split(",").flatMap { keyValue in
+            guard keyValue.count > 0 else { return nil }
+
+            let splitKeyValue = keyValue.split("=")
+            
+            guard splitKeyValue.count == 2 else {
+                return (keyValue,"")
+            }
+            
+            return (splitKeyValue[0], splitKeyValue[1])
+        }
+        
+        return Dictionary(variables) { a, b in
+            return a
+        }
+    }
+
+    fileprivate var conditions: [String:String] {
+        guard let onlyIfHeader = responseHeaders[StubHeaders.onlyIf.header] else {
+            return [:]
+        }
+        
+        let variables: [(String, String)] = onlyIfHeader.split(",").flatMap { keyValue in
+            guard keyValue.count > 0 else { return nil }
+            
+            let splitKeyValue = keyValue.split("=")
+            
+            guard splitKeyValue.count == 2 else {
+                return (keyValue,"")
+            }
+            
+            return (splitKeyValue[0], splitKeyValue[1])
+        }
+        
+        return Dictionary(variables) { a, b in
+            return a
+        }
+    }
+
     private var delay: Double? {
         guard let delayString: String = responseHeaders[StubHeaders.delay.header] else {
             return nil
@@ -122,6 +167,7 @@ class StubRegister {
     static var sharedRegister = StubRegister()
 
     private var stubs: [Mocktail] = []
+    private var variables: [String: String] = [:]
     
     func register(stub: Mocktail) {
         stubs.append( stub )
@@ -135,9 +181,21 @@ class StubRegister {
     
     func requestHandler(request: HttpRequest) -> HttpResponse {
         guard let mocktail = stubs.flatMap({ stub -> Mocktail? in
+            for (key, value) in stub.conditions {
+                guard variables[key] == value else {
+                    return nil
+                }
+            }
+
             return stub.canSatisfy(request: request) ? stub : nil
         }).first else {
             return .raw(501, "Not implemented", nil, nil)
+        }
+        
+        defer {
+            mocktail.variables.forEach { (key, value) in
+                variables[key] = value
+            }
         }
         
         return mocktail.response()
