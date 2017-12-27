@@ -16,7 +16,7 @@ fileprivate enum StubHeaders: String {
     }
     
     static func isStubHeader(header: String) -> Bool {
-        return [StubHeaders.onlyIf.header, StubHeaders.set.header].contains(header)
+        return [StubHeaders.onlyIf.header, StubHeaders.set.header, StubHeaders.delay.header].contains(header)
     }
 }
 

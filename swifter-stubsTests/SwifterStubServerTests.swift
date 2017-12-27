@@ -154,6 +154,7 @@ class SwifterStubServerTests: XCTestCase {
         XCTAssertEqual(response.headers()["Content-Type"], "application/json")
         XCTAssertNil(response.headers()["stub-only-if"])
         XCTAssertNil(response.headers()["stub-set"])
+        XCTAssertNil(response.headers()["stub-delay"])
         
         let writer = BodyWriter()
         try! response.content().write?(writer)
