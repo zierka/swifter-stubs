@@ -1,0 +1,10 @@
+GET
+test/path/expres
+200
+application/json
+stub-only-if: variable1=value1
+stub-set : variable2=value2
+
+{
+"asdf" : "adsfasd"
+}

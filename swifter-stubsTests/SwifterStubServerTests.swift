@@ -45,7 +45,7 @@ class SwifterStubServerTests: XCTestCase {
         try! response.content().write?(writer)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
-
+    
     func testEnableStubQueryString() {
         let path = Bundle(for: SwifterStubServerTests.self).path(forResource: "query_test", ofType: "tail")
         try! stubServer.enableStub(forFile: path!)
@@ -134,6 +134,25 @@ class SwifterStubServerTests: XCTestCase {
         request.path = "test/path/expres"
         response = stubRegister.requestHandler(request: request)
         XCTAssertEqual(response.statusCode(), 201)
+    }
+    
+    func testEnableStubGETStrippingStubHeaders() {
+        let path = Bundle(for: SwifterStubServerTests.self).path(forResource: "stubs_headers_test", ofType: "tail")
+        try! stubServer.enableStub(forFile: path!)
+        
+        let request = HttpRequest()
+        request.method = "get"
+        request.path = "test/path/expres"
+        let response = stubRegister.requestHandler(request: request)
+        
+        XCTAssertEqual(response.statusCode(), 200)
+        XCTAssertEqual(response.headers()["Content-Type"], "application/json")
+        XCTAssertNil(response.headers()["stub-only-if"])
+        XCTAssertNil(response.headers()["stub-set"])
+        
+        let writer = BodyWriter()
+        try! response.content().write?(writer)
+        XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
     
     func testDisableStub() {

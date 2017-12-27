@@ -6,6 +6,19 @@ import Swifter
 import SwiftMocktail
 import SwifterStubServer
 
+fileprivate enum StubHeaders: String {
+    case onlyIf = "stub-only-if"
+    case set = "stub-set"
+
+    var header: String {
+        return rawValue
+    }
+    
+    static func isStubHeader(header: String) -> Bool {
+        return [StubHeaders.onlyIf.header, StubHeaders.set.header].contains(header)
+    }
+}
+
 fileprivate extension HttpRequest {
     
     fileprivate var mocktailMethod: SwiftMocktail.Method {
@@ -40,7 +53,11 @@ fileprivate extension Mocktail {
     }
     
     fileprivate func response() -> HttpResponse {
-        return HttpResponse.raw(responseStatusCode, "Stubbed response", responseHeaders) { responseBodyWriter in
+        let headers = responseHeaders.filter { header, _ -> Bool in
+            return !StubHeaders.isStubHeader(header: header)
+        }
+        
+        return HttpResponse.raw(responseStatusCode, "Stubbed response", headers) { responseBodyWriter in
             guard let data = self.data else { return }
             try responseBodyWriter.write(data)
         }
