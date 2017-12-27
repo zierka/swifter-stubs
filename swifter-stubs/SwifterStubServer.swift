@@ -43,6 +43,8 @@ extension HttpServer: HttpStubServer {
             listenAddressIPv6 = ipv6Address
         }
         
+        notFoundHandler = StubRegister.sharedRegister.requestHandler
+        
         try start(port, forceIPv4: forceIPv4, priority: .default)
     }
     
@@ -57,7 +59,6 @@ extension HttpServer: HttpStubServer {
     public func enableStub(forFile path: String) throws {
         let stubDefinition: Mocktail = try loadStub(fromFile: path)
         StubRegister.sharedRegister.register(stub: stubDefinition)
-        self[stubDefinition.path] = StubRegister.sharedRegister.requestHandler
     }
     
     public func disableStub(forFile path: String) throws {
