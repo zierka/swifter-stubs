@@ -9,6 +9,7 @@ import SwifterStubServer
 fileprivate enum StubHeaders: String {
     case onlyIf = "stub-only-if"
     case set = "stub-set"
+    case delay = "stub-delay"
 
     var header: String {
         return rawValue
@@ -59,10 +60,21 @@ fileprivate extension Mocktail {
         
         return HttpResponse.raw(responseStatusCode, "Stubbed response", headers) { responseBodyWriter in
             guard let data = self.data else { return }
-            try responseBodyWriter.write(data)
+            let delay: Double = self.delay ?? 0.5
+            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + delay) {
+                try? responseBodyWriter.write(data)
+            }
         }
     }
     
+    private var delay: Double? {
+        guard let delayString: String = responseHeaders[StubHeaders.delay.header] else {
+            return nil
+        }
+
+        return Double(delayString)
+    }
+
     private var data: Data? {
         return responseBody.data(using: .utf8)
     }

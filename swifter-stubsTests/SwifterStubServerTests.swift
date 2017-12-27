@@ -43,6 +43,7 @@ class SwifterStubServerTests: XCTestCase {
         
         let writer = BodyWriter()
         try! response.content().write?(writer)
+        wait(for: [writer.didWriteData], timeout: 1.0)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
     
@@ -61,6 +62,7 @@ class SwifterStubServerTests: XCTestCase {
         
         let writer = BodyWriter()
         try! response.content().write?(writer)
+        wait(for: [writer.didWriteData], timeout: 1.0)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
 
@@ -78,6 +80,7 @@ class SwifterStubServerTests: XCTestCase {
         
         let writer = BodyWriter()
         try! response.content().write?(writer)
+        wait(for: [writer.didWriteData], timeout: 1.0)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
 
@@ -96,6 +99,7 @@ class SwifterStubServerTests: XCTestCase {
         
         let writer = BodyWriter()
         try! response.content().write?(writer)
+        wait(for: [writer.didWriteData], timeout: 1.0)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
     
@@ -113,6 +117,7 @@ class SwifterStubServerTests: XCTestCase {
         
         let writer = BodyWriter()
         try! response.content().write?(writer)
+        wait(for: [writer.didWriteData], timeout: 1.0)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
     
@@ -152,6 +157,7 @@ class SwifterStubServerTests: XCTestCase {
         
         let writer = BodyWriter()
         try! response.content().write?(writer)
+        wait(for: [writer.didWriteData], timeout: 1.0)
         XCTAssertEqual(writer.responseString, "{\n\"asdf\" : \"adsfasd\"\n}\n")
     }
     
@@ -220,6 +226,7 @@ class SwifterStubServerTests: XCTestCase {
 fileprivate class BodyWriter: HttpResponseBodyWriter {
     
     var data = Data()
+    let didWriteData = XCTestExpectation(description: "data written")
     
     func write(_ file: String.File) throws {
         fatalError()
@@ -239,6 +246,7 @@ fileprivate class BodyWriter: HttpResponseBodyWriter {
     
     func write(_ data: Data) throws {
         self.data += data
+        didWriteData.fulfill()
     }
     
     var responseString: String {
