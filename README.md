@@ -115,12 +115,12 @@ application/json
 }
 ```
 
-LINE 1: HTTP method (required)
-LINE 2: Path specified as a regular expression (required) - *note: query string parameters must not include regexes*
-LINE 3: HTTP Response Status Code (required)
-LINE 4: Content-type (required)
-LINE 5: Empty line to delimit response body
-LINE 6-EOF: Response body
+* LINE 1: HTTP method (required)
+* LINE 2: Path specified as a regular expression (required) - *note: query string parameters must not include regexes*
+* LINE 3: HTTP Response Status Code (required)
+* LINE 4: Content-type (required)
+* LINE 5: Empty line to delimit response body
+* LINE 6-EOF: Response body
 
 ```
 GET
@@ -137,12 +137,12 @@ stub-set: variable3=value3,variable4=value4
 }
 ```
 
-LINE 6: Custom header (optional) - *any number of custom headers can be specified*
-LINE 7: The delay before sending response in seconds (optional)
-LINE 8: The condition that must be met before this stub applies (optional)
-LINE 9: The variables that will be set when this response is set (optional)
-LINE 10: Empty line to delimit response body
-LINE 11-EOF: Response body
+* LINE 6: Custom header (optional) - *any number of custom headers can be specified*
+* LINE 7: The delay before sending response in seconds (optional)
+* LINE 8: The condition that must be met before this stub applies (optional)
+* LINE 9: The variables that will be set when this response is set (optional)
+* LINE 10: Empty line to delimit response body
+* LINE 11-EOF: Response body
 
 ## Dependencies
 
