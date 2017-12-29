@@ -24,6 +24,8 @@ $(PROJECT_DIR)/Carthage/Build/iOS/SwifterStubs.framework
 $(PROJECT_DIR)/Carthage/Build/iOS/NetUtils.framework
 ```
 
+Link against the frameworks as you would with other carthage dependencies
+
 ### Dynamic Loading
 
 Including a stub server in your production app is overly heavy so an interface has been extracted [swifter-stub-server](https://github.com/nicholascross/swifter-stub-server)
@@ -67,6 +69,31 @@ $(PROJECT_DIR)/Carthage/Build/iOS/SwifterStubs.framework
 $(PROJECT_DIR)/Carthage/Build/iOS/NetUtils.framework
 ```
 This will copy the additional frameworks only for debug builds.
+
+Link **only** against `SwifterStubServer.framework` the other frameworks will be loaded dynamically.
+
+Add the following at an appropriate place in your code
+
+```swift
+        //You might like to include this code only in debug builds
+        #if Debug
+        
+        var server: HttpStubServer?
+        
+        //load all dependant frameworks
+        initialiseStubServer { stubServer in
+        
+            //Load stub from file
+            try? stubServer.enableStub(forFile: Bundle.main.path(forResource: "example", ofType: "tail")!)
+            
+            //Start stub server on given ip address and port
+            try? stubServer.startStubServer(onPort: 4040, boundTo: .v4("192.168.0.100"))
+            
+            server = stubServer
+        }
+        
+        #endif
+```
 
 ## Dependencies
 
