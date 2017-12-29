@@ -75,31 +75,31 @@ Link **only** against `SwifterStubServer.framework` the other frameworks will be
 Add the following at an appropriate place in your code
 
 ```swift
-        //You might like to include this code only in debug builds
-        #if Debug
-        
-        var server: HttpStubServer?
-        var ipAddress: String?
-        
-        //load all dependant frameworks
-        initialiseStubServer { stubServer in
-            //Load stub from file
-            try? stubServer.enableStub(forFile: Bundle.main.path(forResource: "example", ofType: "tail")!)
-            
-            //Start stub server on port, attempt to bind to ip address
-            guard let address = try? stubServer.startStubServer(onPort: 4040, boundTo: .automatic) else {
-                return
-            }
-            
-            guard case IPAddress.v4(let ip) = address else {
-                return
-            }
-            
-            server = stubServer
-            ipAddress = ip
-        }
-        
-        #endif
+//You might like to include this code only in debug builds
+#if Debug
+
+var server: HttpStubServer?
+var ipAddress: String?
+
+//load all dependant frameworks
+initialiseStubServer { stubServer in
+    //Load stub from file
+    try? stubServer.enableStub(forFile: Bundle.main.path(forResource: "example", ofType: "tail")!)
+    
+    //Start stub server on port, attempt to bind to ip address
+    guard let address = try? stubServer.startStubServer(onPort: 4040, boundTo: .automatic) else {
+        return
+    }
+    
+    guard case IPAddress.v4(let ip) = address else {
+        return
+    }
+    
+    server = stubServer
+    ipAddress = ip
+}
+
+#endif
 ```
 
 ## Dependencies
