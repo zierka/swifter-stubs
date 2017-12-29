@@ -32,8 +32,9 @@ extension HttpServer: HttpStubServer {
         }
     }
     
-    public func startStubServer(onPort port: in_port_t, boundTo ipAddress: IPAddress = .automatic) throws {
+    public func startStubServer(onPort port: in_port_t, boundTo ipAddress: IPAddress) throws -> IPAddress {
         var forceIPv4 = false
+        var serverAddress = ipAddress
         
         if case .v4(let ipv4Address) = ipAddress {
             listenAddressIPv4 = ipv4Address
@@ -55,11 +56,13 @@ extension HttpServer: HttpStubServer {
             }
             
             listenAddressIPv4 = address
+            serverAddress = .v4(address)
         }
         
         notFoundHandler = StubRegister.sharedRegister.requestHandler
         
         try start(port, forceIPv4: forceIPv4, priority: .default)
+        return serverAddress
     }
     
     public func stopStubServer() {

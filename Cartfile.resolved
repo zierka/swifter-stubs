@@ -1,4 +1,4 @@
 github "glock45/swifter" "1.3.3"
 github "nicholascross/SwiftMocktail" "0.3.3"
-github "nicholascross/swifter-stub-server" "0.12.0"
+github "nicholascross/swifter-stub-server" "0.13.0"
 github "svdo/swift-netutils" "4.0.2"
