@@ -79,17 +79,24 @@ Add the following at an appropriate place in your code
         #if Debug
         
         var server: HttpStubServer?
+        var ipAddress: String?
         
         //load all dependant frameworks
         initialiseStubServer { stubServer in
-        
             //Load stub from file
             try? stubServer.enableStub(forFile: Bundle.main.path(forResource: "example", ofType: "tail")!)
             
-            //Start stub server on given ip address and port
-            try? stubServer.startStubServer(onPort: 4040, boundTo: .v4("192.168.0.100"))
+            //Start stub server on port, attempt to bind to ip address
+            guard let address = try? stubServer.startStubServer(onPort: 4040, boundTo: .automatic) else {
+                return
+            }
+            
+            guard case IPAddress.v4(let ip) = address else {
+                return
+            }
             
             server = stubServer
+            ipAddress = ip
         }
         
         #endif
