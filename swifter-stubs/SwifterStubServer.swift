@@ -32,7 +32,7 @@ extension HttpServer: HttpStubServer {
         }
     }
     
-    public func startStubServer(onPort port: in_port_t, boundTo ipAddress: IPAddress) throws {
+    public func startStubServer(onPort port: in_port_t, boundTo ipAddress: IPAddress = .automatic) throws {
         var forceIPv4 = false
         
         if case .v4(let ipv4Address) = ipAddress {
@@ -41,6 +41,20 @@ extension HttpServer: HttpStubServer {
         }
         else if case .v6(let ipv6Address) = ipAddress {
             listenAddressIPv6 = ipv6Address
+        }
+        else if case .automatic = ipAddress {
+            let interfaces = type(of: self).availableInterfaces()
+            guard case IPAddress.v4(let address) = (interfaces.filter({
+                guard case IPAddress.v4(_) = $0.address else {
+                    return false
+                }
+                return $0.name.starts(with: "en")
+            }).sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending  }).first?.address)! else {
+                print("available interfaces: \(interfaces)")
+                fatalError("Failed to automatically determine ip address to bind stub server")
+            }
+            
+            listenAddressIPv4 = address
         }
         
         notFoundHandler = StubRegister.sharedRegister.requestHandler
