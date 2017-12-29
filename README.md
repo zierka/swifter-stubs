@@ -102,6 +102,48 @@ initialiseStubServer { stubServer in
 #endif
 ```
 
+### Stub file format
+
+```
+GET
+user/.*/details\?user=test
+200
+application/json
+
+{
+"name" : "bob"
+}
+```
+
+LINE 1: HTTP method (required)
+LINE 2: Path specified as a regular expression (required) - *note: query string parameters must not include regexes*
+LINE 3: HTTP Response Status Code (required)
+LINE 4: Content-type (required)
+LINE 5: Empty line to delimit response body
+LINE 6-EOF: Response body
+
+```
+GET
+user/.*/details\?user=test
+200
+application/json
+token: asdf1234
+stub-delay: 2
+stub-only-if: variable1=value1,variable2=value2
+stub-set: variable3=value3,variable4=value4
+
+{
+"name" : "bob"
+}
+```
+
+LINE 6: Custom header (optional) - *any number of custom headers can be specified*
+LINE 7: The delay before sending response in seconds (optional)
+LINE 8: The condition that must be met before this stub applies (optional)
+LINE 9: The variables that will be set when this response is set (optional)
+LINE 10: Empty line to delimit response body
+LINE 11-EOF: Response body
+
 ## Dependencies
 
 * [Swifter](https://github.com/httpswift/swifter) - Tiny http server engine written in Swift programming language.
