@@ -6,15 +6,15 @@ import Swifter
 
 extension Mocktail {
     
-    func response(withDefaultDelay defaultDelay: Double = 0.5) -> HttpResponse {
+    func response(withDefaultDelay defaultDelay: Int = 1) -> HttpResponse {
         return HttpResponse.raw(responseStatusCode, "Stubbed", headers()) { responseBodyWriter in
             guard let data = self.data else { return }
 
-            let delay: Double = self.delay ?? defaultDelay
+            let delay: Int = self.delay ?? defaultDelay
             
-            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + delay) {
-                try? responseBodyWriter.write(data)
-            }
+            sleep(UInt32(delay))
+            
+            try? responseBodyWriter.write(data)
         }
     }
 

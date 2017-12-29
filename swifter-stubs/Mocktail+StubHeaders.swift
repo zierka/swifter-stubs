@@ -30,12 +30,12 @@ extension Mocktail {
         return onlyIfHeader.asPropertyDictionary()
     }
     
-    var delay: Double? {
+    var delay: Int? {
         guard let delayString: String = responseHeaders[StubHeaders.delay.header] else {
             return nil
         }
         
-        return Double(delayString)
+        return Int(delayString)
     }
     
     func shouldIgnore(header: String) -> Bool {
