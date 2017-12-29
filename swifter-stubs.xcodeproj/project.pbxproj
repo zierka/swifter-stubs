@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B26869F1FF60C1300D8FDD4 /* String+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B26869E1FF60C1300D8FDD4 /* String+Properties.swift */; };
 		8B2F8BF71FE5F94000DFFB62 /* SwifterStubServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2F8BF61FE5F94000DFFB62 /* SwifterStubServerTests.swift */; };
 		8B2F8BFA1FE5FBF300DFFB62 /* StubRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */; };
 		8B2F8BFB1FE605CF00DFFB62 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82126E1FD3A1B600E5B898 /* Swifter.framework */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B26869E1FF60C1300D8FDD4 /* String+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Properties.swift"; sourceTree = "<group>"; };
 		8B2F8BF61FE5F94000DFFB62 /* SwifterStubServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwifterStubServerTests.swift; sourceTree = "<group>"; };
 		8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRegister.swift; sourceTree = "<group>"; };
 		8B31DCFA1FD3FCCF0053FBAE /* swifter_stub_server.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = swifter_stub_server.framework; path = Carthage/Build/iOS/swifter_stub_server.framework; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				8B8212571FD39B7200E5B898 /* Info.plist */,
 				8B8212721FD3A20900E5B898 /* SwifterStubServer.swift */,
 				8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */,
+				8B26869E1FF60C1300D8FDD4 /* String+Properties.swift */,
 			);
 			path = "swifter-stubs";
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B2F8BFA1FE5FBF300DFFB62 /* StubRegister.swift in Sources */,
+				8B26869F1FF60C1300D8FDD4 /* String+Properties.swift in Sources */,
 				8B8212731FD3A20900E5B898 /* SwifterStubServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
