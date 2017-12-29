@@ -9,7 +9,11 @@ class StubRegister {
     static var sharedRegister = StubRegister()
 
     private var stubs: [Mocktail] = []
-    private let requestAuthority: RequestAuthority = RequestAuthority()
+    private let requestAuthority: RequestAuthority
+    
+    init(requestAuthority: RequestAuthority = RequestAuthority()) {
+        self.requestAuthority = requestAuthority
+    }
     
     func register(stub: Mocktail) {
         stubs.append( stub )
