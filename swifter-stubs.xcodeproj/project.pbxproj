@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B107B5B1FF618D8007416CA /* Mocktail+RequestFulfilment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B107B5A1FF618D8007416CA /* Mocktail+RequestFulfilment.swift */; };
 		8B107B5D1FF6207A007416CA /* RequestAuthorityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B107B5C1FF6207A007416CA /* RequestAuthorityTests.swift */; };
+		8B107B5F1FF63432007416CA /* StubRegisterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B107B5E1FF63432007416CA /* StubRegisterTests.swift */; };
 		8B2686991FF60B5900D8FDD4 /* Mocktail+StubHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2686981FF60B5900D8FDD4 /* Mocktail+StubHeaders.swift */; };
 		8B26869B1FF60BCE00D8FDD4 /* Mocktail+HttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B26869A1FF60BCE00D8FDD4 /* Mocktail+HttpResponse.swift */; };
 		8B26869D1FF60BED00D8FDD4 /* RequestAuthority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B26869C1FF60BED00D8FDD4 /* RequestAuthority.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		8B107B5A1FF618D8007416CA /* Mocktail+RequestFulfilment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocktail+RequestFulfilment.swift"; sourceTree = "<group>"; };
 		8B107B5C1FF6207A007416CA /* RequestAuthorityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAuthorityTests.swift; sourceTree = "<group>"; };
+		8B107B5E1FF63432007416CA /* StubRegisterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRegisterTests.swift; sourceTree = "<group>"; };
 		8B2686981FF60B5900D8FDD4 /* Mocktail+StubHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocktail+StubHeaders.swift"; sourceTree = "<group>"; };
 		8B26869A1FF60BCE00D8FDD4 /* Mocktail+HttpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocktail+HttpResponse.swift"; sourceTree = "<group>"; };
 		8B26869C1FF60BED00D8FDD4 /* RequestAuthority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAuthority.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				8B61B1F11FE61AFD00A9AACF /* post_test.tail */,
 				8B61B1EF1FE608FA00A9AACF /* test.tail */,
 				8B107B5C1FF6207A007416CA /* RequestAuthorityTests.swift */,
+				8B107B5E1FF63432007416CA /* StubRegisterTests.swift */,
 			);
 			path = "swifter-stubsTests";
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B2F8BF71FE5F94000DFFB62 /* SwifterStubServerTests.swift in Sources */,
+				8B107B5F1FF63432007416CA /* StubRegisterTests.swift in Sources */,
 				8B107B5D1FF6207A007416CA /* RequestAuthorityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
