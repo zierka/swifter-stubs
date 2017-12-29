@@ -1,13 +1,12 @@
 //  Copyright © 2017 Nick Cross. All rights reserved.
 
 import Foundation
-import Swifter
 import SwiftMocktail
 
 extension Mocktail {
 
-    func canSatisfy(request: HttpRequest) -> Bool {
-        guard SwiftMocktail.Method.other(request.method) == method else {
+    func canSatisfyRequest(forMethod requestMethod: String, path requestPath: String, withParams requestParams: [String: String]) -> Bool {
+        guard SwiftMocktail.Method.other(requestMethod) == method else {
             return false
         }
         
@@ -15,17 +14,17 @@ extension Mocktail {
             fatalError("Failed to create regular expression from partial path: \(partialPath)")
         }
         
-        guard expression.firstMatch(in: request.path, options: [], range: NSMakeRange(0,request.path.count)) != nil else {
+        guard expression.firstMatch(in: requestPath, options: [], range: NSMakeRange(0,requestPath.count)) != nil else {
             return false
         }
         
-        for case let param in params.keys where request.params[param] != params[param] {
+        for case let param in params.keys where requestParams[param] != params[param] {
             return false
         }
         
         return true
     }
-    
+
     //MARK: - Private
     
     private var params: [String: String] {

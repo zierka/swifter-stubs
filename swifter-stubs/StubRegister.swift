@@ -24,7 +24,7 @@ class StubRegister {
     func requestHandler(request: HttpRequest) -> HttpResponse {
         var mocktail: Mocktail?
         
-        for stub in stubs where requestAuthority.allowRequest(request: request, withStub: stub) {
+        for stub in stubs where requestAuthority.allowRequest(forMethod: request.method, path: request.path, withParams: request.params, withStub: stub) {
             mocktail = stub
             break
         }

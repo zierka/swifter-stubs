@@ -7,14 +7,14 @@ import SwiftMocktail
 class RequestAuthority {
     private var variables: [String: String] = [:]
     
-    func allowRequest(request: HttpRequest, withStub stub: Mocktail) -> Bool {
+    func allowRequest(forMethod method: String, path: String, withParams params: [String: String], withStub stub: Mocktail) -> Bool {
         for (key, value) in stub.conditions {
             guard variables[key] == value else {
                 return false
             }
         }
             
-        return stub.canSatisfy(request: request)
+        return stub.canSatisfyRequest(forMethod: method, path: path, withParams: params)
     }
     
     func update(variable: String, withValue value: String) {
@@ -22,4 +22,3 @@ class RequestAuthority {
     }
 
 }
-
