@@ -6,19 +6,6 @@ import Swifter
 import SwiftMocktail
 import SwifterStubServer
 
-fileprivate enum StubHeaders: String {
-    case onlyIf = "stub-only-if"
-    case set = "stub-set"
-    case delay = "stub-delay"
-
-    var header: String {
-        return rawValue
-    }
-    
-    static func isStubHeader(header: String) -> Bool {
-        return [StubHeaders.onlyIf.header, StubHeaders.set.header, StubHeaders.delay.header].contains(header)
-    }
-}
 
 fileprivate extension HttpRequest {
     
@@ -66,30 +53,6 @@ fileprivate extension Mocktail {
                 try? responseBodyWriter.write(data)
             }
         }
-    }
-    
-    fileprivate var variables: [String: String] {
-        guard let setHeader = responseHeaders[StubHeaders.set.header] else {
-            return [:]
-        }
-        
-        return setHeader.asPropertyDictionary()
-    }
-
-    fileprivate var conditions: [String:String] {
-        guard let onlyIfHeader = responseHeaders[StubHeaders.onlyIf.header] else {
-            return [:]
-        }
-        
-        return onlyIfHeader.asPropertyDictionary()
-    }
-
-    private var delay: Double? {
-        guard let delayString: String = responseHeaders[StubHeaders.delay.header] else {
-            return nil
-        }
-
-        return Double(delayString)
     }
 
     private var data: Data? {
