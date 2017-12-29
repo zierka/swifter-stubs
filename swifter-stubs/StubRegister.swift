@@ -1,4 +1,3 @@
-
 //  Copyright © 2017 Nick Cross. All rights reserved.
 
 import Foundation
@@ -6,84 +5,11 @@ import Swifter
 import SwiftMocktail
 import SwifterStubServer
 
-
-fileprivate extension HttpRequest {
-    
-    fileprivate var mocktailMethod: SwiftMocktail.Method {
-        guard let httpMethod = SwiftMocktail.HttpMethod(rawValue: method) else {
-            return .other(method)
-        }
-        
-        return .httpMethod(httpMethod)
-    }
-    
-}
-
-fileprivate extension Mocktail {
-    fileprivate func canSatisfy(request: HttpRequest) -> Bool {
-        guard SwiftMocktail.Method.other(request.method) == method else {
-            return false
-        }
-        
-        guard let expression = try? NSRegularExpression(pattern:"^\(partialPath)$", options: .caseInsensitive) else {
-            fatalError("Failed to create regular expression from partial path: \(partialPath)")
-        }
-
-        guard expression.firstMatch(in: request.path, options: [], range: NSMakeRange(0,request.path.count)) != nil else {
-            return false
-        }
-
-        for case let param in params.keys where request.params[param] != params[param] {
-            return false
-        }
-        
-        return true
-    }
-    
-    private var params: [String: String] {
-        guard let queryStringOnly = path.components(separatedBy:"\\?").last else {
-            return [:]
-        }
-        
-        guard let queryItems = NSURLComponents(string: "?\(queryStringOnly)" )?.queryItems else {
-            return [:]
-        }
-        
-        var queryParams: [String:String] = [:]
-        
-        for item in queryItems {
-            queryParams[item.name] = item.value
-        }
-        
-        return queryParams
-    }
-    
-    private var partialPath: String {
-        //raw expression (((?!\\\?).)+)\\\?.*
-        //the first group of a match will be the string prior to the escaped question mark
-        guard let expression = try? NSRegularExpression(pattern: "(((?!\\\\\\?).)+)\\\\\\?.*", options: .caseInsensitive) else {
-            fatalError("The expression is invalid")
-        }
-        
-        if let rangeOfPath = expression.firstMatch(in: path, options: [.anchored], range: NSMakeRange(0, path.count))?.range(at: 1),
-            let range = Range(rangeOfPath, in: path) {
-            return String(path[range])
-        }
-        
-        guard let path = NSURLComponents(string: path)?.path else {
-            fatalError("Invalid path: \(self.path)")
-        }
-        
-        return path
-    }
-
-}
-
 class StubRegister {
     static var sharedRegister = StubRegister()
 
     private var stubs: [Mocktail] = []
-    private var variables: [String: String] = [:]
+    private let requestAuthority: RequestAuthority = RequestAuthority()
     
     func register(stub: Mocktail) {
         stubs.append( stub )
@@ -96,24 +22,23 @@ class StubRegister {
     }
     
     func requestHandler(request: HttpRequest) -> HttpResponse {
-        guard let mocktail = stubs.flatMap({ stub -> Mocktail? in
-            for (key, value) in stub.conditions {
-                guard variables[key] == value else {
-                    return nil
-                }
-            }
-
-            return stub.canSatisfy(request: request) ? stub : nil
-        }).first else {
+        var mocktail: Mocktail?
+        
+        for stub in stubs where requestAuthority.allowRequest(request: request, withStub: stub) {
+            mocktail = stub
+            break
+        }
+        
+        guard let stub = mocktail else {
             return .raw(501, "Not implemented", nil, nil)
         }
         
         defer {
-            mocktail.variables.forEach { (key, value) in
-                variables[key] = value
+            stub.variables.forEach { (key, value) in
+                requestAuthority.update(variable: key, withValue: value)
             }
         }
         
-        return mocktail.response()
+        return stub.response()
     }
 }
