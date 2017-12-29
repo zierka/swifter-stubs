@@ -3,17 +3,13 @@
 import Foundation
 import SwiftMocktail
 
-enum StubHeaders: String {
+fileprivate enum StubHeaders: String {
     case onlyIf = "stub-only-if"
     case set = "stub-set"
     case delay = "stub-delay"
     
     var header: String {
         return rawValue
-    }
-    
-    static func isStubHeader(header: String) -> Bool {
-        return [StubHeaders.onlyIf.header, StubHeaders.set.header, StubHeaders.delay.header].contains(header)
     }
 }
 
@@ -40,5 +36,9 @@ extension Mocktail {
         }
         
         return Double(delayString)
+    }
+    
+    func shouldIgnore(header: String) -> Bool {
+        return StubHeaders(rawValue: header) != nil
     }
 }

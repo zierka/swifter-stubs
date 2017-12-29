@@ -40,25 +40,6 @@ fileprivate extension Mocktail {
         return true
     }
     
-    fileprivate func response() -> HttpResponse {
-        let headers = responseHeaders.filter { header, _ -> Bool in
-            return !StubHeaders.isStubHeader(header: header)
-        }
-        
-        return HttpResponse.raw(responseStatusCode, "Stubbed response", headers) { responseBodyWriter in
-            guard let data = self.data else { return }
-            let delay: Double = self.delay ?? 0.5
-            
-            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + delay) {
-                try? responseBodyWriter.write(data)
-            }
-        }
-    }
-
-    private var data: Data? {
-        return responseBody.data(using: .utf8)
-    }
-    
     private var params: [String: String] {
         guard let queryStringOnly = path.components(separatedBy:"\\?").last else {
             return [:]

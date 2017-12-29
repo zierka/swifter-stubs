@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B2686991FF60B5900D8FDD4 /* Mocktail+StubHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2686981FF60B5900D8FDD4 /* Mocktail+StubHeaders.swift */; };
+		8B26869B1FF60BCE00D8FDD4 /* Mocktail+HttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B26869A1FF60BCE00D8FDD4 /* Mocktail+HttpResponse.swift */; };
 		8B26869F1FF60C1300D8FDD4 /* String+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B26869E1FF60C1300D8FDD4 /* String+Properties.swift */; };
 		8B2F8BF71FE5F94000DFFB62 /* SwifterStubServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2F8BF61FE5F94000DFFB62 /* SwifterStubServerTests.swift */; };
 		8B2F8BFA1FE5FBF300DFFB62 /* StubRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		8B2686981FF60B5900D8FDD4 /* Mocktail+StubHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocktail+StubHeaders.swift"; sourceTree = "<group>"; };
+		8B26869A1FF60BCE00D8FDD4 /* Mocktail+HttpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocktail+HttpResponse.swift"; sourceTree = "<group>"; };
 		8B26869E1FF60C1300D8FDD4 /* String+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Properties.swift"; sourceTree = "<group>"; };
 		8B2F8BF61FE5F94000DFFB62 /* SwifterStubServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwifterStubServerTests.swift; sourceTree = "<group>"; };
 		8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRegister.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				8B8212721FD3A20900E5B898 /* SwifterStubServer.swift */,
 				8B2F8BF81FE5FAE400DFFB62 /* StubRegister.swift */,
 				8B2686981FF60B5900D8FDD4 /* Mocktail+StubHeaders.swift */,
+				8B26869A1FF60BCE00D8FDD4 /* Mocktail+HttpResponse.swift */,
 				8B26869E1FF60C1300D8FDD4 /* String+Properties.swift */,
 			);
 			path = "swifter-stubs";
@@ -273,6 +276,7 @@
 				8B26869F1FF60C1300D8FDD4 /* String+Properties.swift in Sources */,
 				8B2686991FF60B5900D8FDD4 /* Mocktail+StubHeaders.swift in Sources */,
 				8B8212731FD3A20900E5B898 /* SwifterStubServer.swift in Sources */,
+				8B26869B1FF60BCE00D8FDD4 /* Mocktail+HttpResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
